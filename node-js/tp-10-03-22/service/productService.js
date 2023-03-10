@@ -5,7 +5,7 @@ export class ProductService {
     file = "data/products.json";
 
 
-//creer un produit
+//add product
     createProduct(product) {
         let products = read(this.file);
         let newProduct = new Product(products.length , product.name , product.price , product.description);
@@ -45,12 +45,12 @@ export class ProductService {
         return product;
     }
 
-    addStock(id , quantity) {
-        let products = read(this.file);
-        let product = products.find(p => p.id == id);
-        product.stock += quantity;
-        write(this.file , products);
-        return product;
-    }
+    // addStock(id , quantity) {
+    //     let products = read(this.file);
+    //     let product = products.find(p => p.id == id);
+    //     product.stock += quantity;
+    //     write(this.file , products);
+    //     return product;
+    // }
 }
 
