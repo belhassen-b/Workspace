@@ -3,14 +3,18 @@ import {read , write} from "../utils/utilsService.js";
 
 
 export class ClientService {
-    file = "data/clients.json";
+    constructor() {
+        this.file = "data/clients.json";
+    }
+
+
 
     // add client
     createClient(client) {
         let clients = read(this.file);
         let newClient = new Client(clients.length , client.name , client.firstName , client.phone);
         clients.push(newClient);
-        write(this.file , clients);
+        write( this.file  , clients);
         return client;
     }
 

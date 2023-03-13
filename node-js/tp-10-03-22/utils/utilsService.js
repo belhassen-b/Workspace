@@ -1,8 +1,6 @@
 import {readFileSync , writeFileSync} from "fs";
 
 
-
-
 export function write(file, items){
     writeFileSync(file, JSON.stringify(items))
 }

@@ -2,8 +2,9 @@ import {Product} from "../models/Product.js";
 import {read , write} from "../utils/utilsService.js";
 
 export class ProductService {
-    file = "data/products.json";
-
+    constructor() {
+        this.file = "data/products.json";
+    }
 
 //add product
     createProduct(product) {

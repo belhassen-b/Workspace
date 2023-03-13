@@ -3,8 +3,9 @@ import {ProductService} from "./productService.js";
 import {Order} from "../models/Order.js";
 
 export class OrderService {
-    file = "data/orders.json";
-
+    constructor() {
+        this.file = "data/orders.json";
+    }
     productService = new ProductService();
 
 //show all orders
