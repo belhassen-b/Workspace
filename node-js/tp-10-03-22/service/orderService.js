@@ -1,12 +1,15 @@
 import {read , write} from "../utils/utilsService.js";
 import {ProductService} from "./productService.js";
+import {ClientService} from "./clientService.js";
 import {Order} from "../models/Order.js";
 
 export class OrderService {
-    constructor() {
+    constructor(productService, clientService) {
         this.file = "data/orders.json";
+        this.productService = new ProductService()
+        this.clientService = new ClientService();
     }
-    productService = new ProductService();
+
 
 //show all orders
     showAllOrders() {
@@ -29,16 +32,20 @@ export class OrderService {
 //add order
     addOrder(order) {
         let orders = read(this.file);
-        let newOrder = new Order(orders.length , order.clientId);
-        order.products.forEach(p => {
-                this.productService.removeStock(p.productId , p.quantity);
-                newOrder.products.push(p);
-            }
-        );
-        orders.push(newOrder);
-        write(this.file , orders);
-    }
+        const client = this.clientService.showClientById(order.clientId);
+        if (client != undefined) {
+            let newOrder = new Order(orders.length , order.clientId);
+            order.products.forEach(p => {
+                    this.productService.removeStock(p.productId , p.quantity);
+                    newOrder.products.push(p);
+                }
+            );
+            orders.push(newOrder);
+            write(this.file , orders);
 
+            console.error("not found client");
+        }
+    }
 
 //delete order by id
     deleteOrder(id) {
