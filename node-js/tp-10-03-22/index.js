@@ -10,9 +10,9 @@ const port = 3000;
 api.use(express.json());
 
 
-api.use('/', productRoutes);
-api.use('/', clientRoutes);
-api.use('/', orderRoutes);
+api.use('/products', productRoutes);
+api.use('/clients', clientRoutes);
+api.use('/orders', orderRoutes);
 
 
 // ---------------------------------------------------------//

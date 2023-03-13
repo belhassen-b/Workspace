@@ -11,23 +11,23 @@ const productRoutes = express.Router();
 // Products
 // Afficher tous les produits
 
-productRoutes.get('/products' , (req , res) => {
-    console.log("products");
+productRoutes.get('/' , (req , res) => {
+    // console.log("products");
     res.json(productService.showAllProducts());
 });
 
 // Afficher un produit par son id
-productRoutes.get('/products/:id' , (req , res) => {
+productRoutes.get('/:id' , (req , res) => {
     res.json(productService.showProductById(req.params.id));
 });
 // Créer un produit
-productRoutes.post('/products' , (req , res) => {
+productRoutes.post('/' , (req , res) => {
     res.json(productService.createProduct(req.body));
 });
 
 // Supprimer un produit par son id
-productRoutes.delete('/products/:id' , (req , res) => {
-    console.log("delete" , req.params.id);
+productRoutes.delete('/:id' , (req , res) => {
+    // console.log("delete" , req.params.id);
     res.json(productService.deleteProduct(req.params.id));
 });
 
